@@ -1,0 +1,157 @@
+/* Give the page a readable width and center the content. */
+body {
+	margin: 0;
+	padding: 24px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #17324d;
+	background-color: #f4f8f5;
+}
+
+/* Center the introduction above the timeline. */
+header {
+	position: relative;
+	max-width: 1200px;
+	margin: 0 auto 32px;
+	padding: 56px 24px;
+	border-radius: 8px;
+	background: linear-gradient(135deg, #087dcc 0%, #0055a8 100%);
+	text-align: center;
+	overflow: hidden;
+}
+
+header > div {
+	position: relative;
+	z-index: 1;
+}
+
+header img {
+	width: 5rem;
+}
+
+header h1 {
+	margin-bottom: 12px;
+	color: #ffffff;
+	font-size: 2.75rem;
+	text-transform: uppercase;
+}
+
+/* Separate the hero heading from its description. */
+.hero-divider {
+	width: 60px;
+	margin: 0 auto 16px;
+	border: 0;
+	border-top: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+header p {
+	max-width: 700px;
+	margin: 0 auto;
+	color: #ffffff;
+	font-size: 1.1rem;
+	line-height: 1.6;
+}
+
+/* Keep four cards visible and let users scroll to the remaining cards. */
+section {
+	display: flex;
+	gap: 20px;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 8px 4px 20px;
+	overflow-x: auto;
+	scroll-snap-type: x proximity;
+}
+
+section > div {
+	box-sizing: border-box;
+	flex: 0 0 calc((100% - 60px) / 4);
+	position: relative;
+	min-height: 280px;
+	padding: 24px;
+	border: 1px solid #c7ddd1;
+	border-radius: 8px;
+	background-color: #ffffff;
+	box-shadow: 0 4px 12px rgba(23, 50, 77, 0.08);
+	overflow: hidden;
+	scroll-snap-align: start;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Gently enlarge the active card without changing the row layout. */
+.card:hover,
+.card:focus-within {
+	z-index: 1;
+	transform: scale(1.05);
+	box-shadow: 0 8px 20px rgba(23, 50, 77, 0.16);
+}
+
+/* Make every timeline image match the 500 by 200 reference image. */
+section > div img {
+	display: block;
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+}
+
+section h2 {
+	margin: 0 0 8px;
+	color: #2b8bd0;
+	font-size: 2rem;
+}
+
+section h3 {
+	margin: 0 0 16px;
+	color: #17324d;
+}
+
+section p {
+	line-height: 1.6;
+}
+
+/* Place the description over the card image and hide it until needed. */
+.card p {
+	position: absolute;
+	top: auto;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 16px;
+	color: #ffffff;
+	background-color: rgba(23, 50, 77, 0.9);
+	opacity: 0;
+	transform: translateY(100%);
+	transition: opacity 0.35s ease, transform 0.35s ease;
+	pointer-events: none;
+}
+
+.card:hover p,
+.card:focus-within p {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+body > p {
+	max-width: 1200px;
+	margin: 16px auto 0;
+	color: #536b78;
+	text-align: center;
+}
+
+/* Stack the cards on smaller screens instead of making them scroll sideways. */
+@media (max-width: 767px) {
+	body {
+		padding: 16px;
+	}
+
+	section {
+		display: block;
+		overflow-x: visible;
+	}
+
+	section > div {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+}
